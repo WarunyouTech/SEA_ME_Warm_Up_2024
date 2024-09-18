@@ -1,0 +1,108 @@
+#include <iostream>
+#include <string>
+
+class Car {
+private:
+    std::string name;
+    int speed;
+
+public:
+    // Default Constructor
+    Car() : name("Default name"), speed(0) {
+        std::cout << "Default Constructor Called!\n";
+    }
+
+    // Parameterized Constructor
+    Car(const std::string& name, int speed) : name(name), speed(speed) {
+        std::cout << "Parameterized Constructor Called!\n";
+    }
+
+    // Copy Constructor
+    Car(const Car& other) : name(other.name), speed(other.speed) {
+        std::cout << "Copy Constructor Called!\n";
+    }
+
+    // Copy Assignment Operator
+    Car& operator=(const Car& other) {
+        if (this == &other) return *this; // Self-assignment check
+        std::cout << "Copy Assignment Operator Called!\n";
+        name = other.name;
+        speed = other.speed;
+        return *this;
+    }
+
+    // Destructor
+    ~Car() {
+        std::cout << "Destructor Called!\n";
+    }
+
+    // Getter and Setter for name
+    void setName(const std::string& newName) { name = newName; }
+    std::string getName() const { return name; }
+
+    // Getter and Setter for speed
+    void setSpeed(int newSpeed) { speed = newSpeed; }
+    int getSpeed() const { return speed; }
+
+    // Display Function
+    void display() const {
+        std::cout << "Car's name: " << name << " / Maximum Speed: " << speed << " km/h\n";
+    }
+
+    // Comparison Operator
+    bool operator<(const Car& other) const {
+        return speed < other.speed;
+    }
+};
+
+// Function to create a Car from user input
+Car createCar() {
+    std::string name;
+    int speed;
+
+    std::cout << "Enter car name: ";
+    std::getline(std::cin, name);
+    std::cout << "Enter car speed: ";
+    std::cin >> speed;
+    std::cin.ignore(); // To ignore leftover newline character
+
+    return Car(name, speed);
+}
+
+int main() {
+    std::cout << "Creating cars...\n";
+
+    // Create Car using default constructor
+    Car car0;
+    car0.display();
+
+    // Create Car using parameterized constructor
+    Car car1("Volkswagen", 200);
+    car1.display();
+
+    // Create Car using user input
+    Car car2 = createCar();
+    car2.display();
+
+    // Copy Constructor
+    Car car3 = car1;
+    car3.setName("BMW");
+    car3.setSpeed(300);
+    car3.display();
+
+    // Copy Assignment Operator
+    Car car4;
+    car4 = car2;
+    car4.setName("Hyundai");
+    car4.setSpeed(500);
+    car4.display();
+
+    // Compare two cars
+    if (car3 < car4) {
+        std::cout << car4.getName() << " is faster than " << car3.getName() << ".\n";
+    } else {
+        std::cout << car3.getName() << " is faster than " << car4.getName() << ".\n";
+    }
+
+    return 0;
+}
