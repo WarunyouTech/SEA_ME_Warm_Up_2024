@@ -59,7 +59,7 @@ The provided C++ code demonstrates object-oriented programming concepts with a h
 - Iterates through a collection of `Vehicle` pointers and displays details for each vehicle.
 
 *******************************************************
-## Learn More: Building a Phonebook Application in C++
+## Learn More: A Software Defined Car
 ### Relevant YouTube Tutorials:
 1. [Object Oriented Programming (OOP) in C++ Course](https://www.youtube.com/watch?v=wN0x9eZLix4)
 2. [Constructors And Destructors In C++](https://www.youtube.com/watch?v=oRBK0Mh_gG0)
