@@ -33,7 +33,7 @@ public:
         return *this;
     }
 
-    // Virtual Drive Function
+    // Pure Virtual Function
     virtual void drive() const = 0;
 
     // Setters and Getters
@@ -46,7 +46,7 @@ public:
     int getYear() const { return year; }
 };
 
-class Car : public virtual Vehicle {
+class Car : public Vehicle {
 protected:
     int wheelCount;
 
@@ -57,8 +57,6 @@ public:
         : Vehicle(make, model, year), wheelCount(wheels) {}
 
     Car(const Car& other) : Vehicle(other), wheelCount(other.wheelCount) {}
-
-    ~Car() override {}
 
     Car& operator=(const Car& other) {
         if (this != &other) {
@@ -74,77 +72,48 @@ public:
     }
 };
 
-class Drone : public virtual Vehicle {
+class UAM : public Car {
 protected:
     int wingCount;
 
 public:
-    Drone() : Vehicle(), wingCount(4) {}
+    UAM() : Car(), wingCount(4) {}
 
-    Drone(int make, int model, int year, int wings) 
-        : Vehicle(make, model, year), wingCount(wings) {}
+    UAM(int make, int model, int year, int wheels, int wings) 
+        : Car(make, model, year, wheels), wingCount(wings) {}
 
-    Drone(const Drone& other) : Vehicle(other), wingCount(other.wingCount) {}
+    UAM(const UAM& other) : Car(other), wingCount(other.wingCount) {}
 
-    ~Drone() override {}
-
-    Drone& operator=(const Drone& other) {
+    UAM& operator=(const UAM& other) {
         if (this != &other) {
-            Vehicle::operator=(other);
+            Car::operator=(other);
             wingCount = other.wingCount;
         }
         return *this;
     }
 
     void drive() const override {
-        cout << "Flying Drone - Make: " << make << ", Model: " << model 
-             << ", Year: " << year << ", Wings: " << wingCount << endl;
-    }
-};
-
-class UAM : public Car, public Drone {
-public:
-    UAM() : Vehicle(), Car(), Drone() {}
-
-    UAM(int make, int model, int year, int wings, int wheels) 
-        : Vehicle(make, model, year), Car(make, model, year, wheels), Drone(make, model, year, wings) {}
-
-    UAM(const UAM& other) : Vehicle(other), Car(other), Drone(other) {}
-
-    ~UAM() override {}
-
-    UAM& operator=(const UAM& other) {
-        if (this != &other) {
-            Vehicle::operator=(other);
-            Car::operator=(other);
-            Drone::operator=(other);
-        }
-        return *this;
-    }
-
-    void drive() const override {
         cout << "Operating UAM - Make: " << make << ", Model: " << model 
-             << ", Year: " << year << ", Wings: " << wingCount 
-             << ", Wheels: " << wheelCount << endl;
+             << ", Year: " << year << ", Wheels: " << wheelCount 
+             << ", Wings: " << wingCount << endl;
     }
 };
 
 int main() {
-    // Creating Car and Drone objects
+    // Creating Car and UAM objects
     Car myCar(1, 2023, 2023, 4);
-    Drone myDrone(2, 2025, 2025, 6);
+    UAM myUAM(2, 2025, 2025, 4, 6);
 
     cout << "Car Details: ";
     myCar.drive();
 
-    cout << "Drone Details: ";
-    myDrone.drive();
+    cout << "UAM Details: ";
+    myUAM.drive();
 
     // Polymorphism
     vector<unique_ptr<Vehicle>> vehicles;
     vehicles.push_back(make_unique<Car>(3, 2026, 2026, 4));
-    vehicles.push_back(make_unique<Drone>(4, 2027, 2027, 8));
-    vehicles.push_back(make_unique<UAM>(5, 2028, 2028, 4, 6));
+    vehicles.push_back(make_unique<UAM>(4, 2027, 2027, 6, 4));
 
     for (const auto& vehicle : vehicles) {
         cout << "Vehicle Details: ";
