@@ -26,14 +26,10 @@ This C++ program converts a given string to either **uppercase** or **lowercase*
   Converted to UPPERCASE: HELLO WORLD
   
 *******************************************************
-### Learn more:
-## String Case Conversion with Command-Line Arguments
+## Learn More: String Case Conversion with Command-Line Arguments
 
 This C++ program converts a given string to either uppercase or lowercase based on the command-line arguments provided by the user. The user specifies an action (`up` for uppercase, `down` for lowercase) and the program performs the conversion. The program also offers a help option (`--help`) to explain its usage.
 
-## Relevant YouTube Tutorials
-
+### Relevant YouTube Tutorials
 1. [Convert String to Lowercase or Uppercase Using Command Line Arguments in C](https://www.youtube.com/watch?v=bDJ6JcCAITg)
 2. [C++ Command Line Arguments String Case Conversion](https://www.youtube.com/watch?v=LV0ZsyOChGs)
-
-These videos guide you through similar concepts of string case conversion based on user input.
