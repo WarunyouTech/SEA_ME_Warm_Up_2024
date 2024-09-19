@@ -50,7 +50,5 @@ The provided C++ code demonstrates the use of inheritance and polymorphism throu
 *******************************************************
 ## Learn More
 ### Relevant YouTube Tutorials:
-1. **[C++ Classes and Inheritance](https://www.youtube.com/watch?v=0ifML4n2ZbU)**
-2. **[Understanding C++ Constructors and Destructors](https://www.youtube.com/watch?v=MjDNmTeB1hM)**
-3. **[C++ Polymorphism and Virtual Functions](https://www.youtube.com/watch?v=xfZ_AY1lEOM)**
-4. **[C++ Inheritance and Access Specifiers](https://www.youtube.com/watch?v=4aLT3ggfi0s)**
+1. **[Orthodox Canonical Class Form implementation in C++](https://www.youtube.com/watch?v=Upx5nIbrxcY)**
+2. **[Orthodox Canonical Form Snippet](https://www.youtube.com/watch?v=GBoP8btm4go)**
