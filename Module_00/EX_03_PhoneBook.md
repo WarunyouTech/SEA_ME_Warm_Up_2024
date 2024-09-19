@@ -29,7 +29,7 @@ The program provides various outputs based on user actions:
 6. **Menu Options**: Displays the menu for navigating the phonebook operations.
 
 *******************************************************
-## Learn more: Building a Phonebook Application in C++
+## Learn More: Building a Phonebook Application in C++
 ### Relevant YouTube Tutorials:
 1. [Building a Phonebook Application in C++](https://www.youtube.com/watch?v=JhkOWXC1ZyU)
 2. [C++ implementation of Phone Book](https://www.youtube.com/watch?v=uRQDB7NPIGw)
