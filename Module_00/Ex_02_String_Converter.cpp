@@ -1,7 +1,3 @@
-// Input: Command-line arguments (up or down for action, followed by a string to be converted).
-// Output: The converted string (either all uppercase or lowercase).
-// Goal: Convert the given string based on the specified action.
-
 #include <iostream>
 #include <algorithm>
 #include <cctype>
