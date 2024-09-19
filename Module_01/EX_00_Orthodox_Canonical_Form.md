@@ -40,7 +40,7 @@ The provided C++ code defines a `Car` class that demonstrates various object-ori
    - Compares two cars and prints which one is faster.
 
 ******************************************************
-## Learn More: C++ Code Defines A Car Class With Multiple Constructors,
+## Learn More:
 ### Relevant YouTube Tutorials:
 1. **[C++ Tutorial 16 - Constructors in classes and code in multiple files](https://www.youtube.com/watch?v=CT2k4KbAQpo)**
 
