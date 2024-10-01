@@ -1,88 +1,85 @@
 #include <iostream>
 #include <algorithm>
 #include <cctype>
-#include <string>
+#include <cstring>
 
 using namespace std;
 
-// Utility class to convert strings to upper or lower case
+// Utility class for case conversion
 class CaseConverter {
 public:
-    // Convert a string to uppercase
-    static string toUpperCase(const string &input) {
-        string result = input;
+    // Convert string to uppercase
+    static string toUpperCase(const string &str) {
+        string result = str;
         transform(result.begin(), result.end(), result.begin(), ::toupper);
         return result;
     }
 
-    // Convert a string to lowercase
-    static string toLowerCase(const string &input) {
-        string result = input;
+    // Convert string to lowercase
+    static string toLowerCase(const string &str) {
+        string result = str;
         transform(result.begin(), result.end(), result.begin(), ::tolower);
         return result;
     }
 };
 
-// Function to join command-line arguments into a single string
-string joinArguments(int argc, char *argv[], int startIndex) {
-    string combinedInput;
-    for (int i = startIndex; i < argc; ++i) {
-        if (i > startIndex) combinedInput += " ";
-        combinedInput += argv[i];
+// Function to display usage instructions
+void printUsage(const char *programName) {
+    cout << "Usage: " << programName << " <up|down> <string to convert>" << endl;
+    cout << "Example: " << programName << " up \"Hello World\"" << endl;
+}
+
+// Function to validate the number of arguments
+bool validateArguments(int argc, char *argv[]) {
+    if (argc < 3) {
+        cerr << "Error: Insufficient arguments provided." << endl;
+        printUsage(argv[0]);
+        return false;
     }
-    return combinedInput;
+    return true;
 }
 
-// Function to display usage information to the user
-void displayUsage(const char *programName) {
-    cerr << "Usage: " << programName << " <up|down> <string to convert>" << endl;
-    cerr << "Example: " << programName << " up \"Hello World\"" << endl;
+// Function to combine all arguments into a single string
+string combineArguments(int argc, char *argv[]) {
+    string combinedString;
+    for (int i = 2; i < argc; ++i) {
+        if (i > 2) combinedString += " ";  // Add space between words
+        combinedString += argv[i];
+    }
+    return combinedString;
 }
 
-// Function to display help information when requested
-void displayHelp() {
-    cout << "This program converts a given string to either UPPERCASE or lowercase." << endl;
-    cout << "Commands:" << endl;
-    cout << "  up    - Convert the string to UPPERCASE." << endl;
-    cout << "  down  - Convert the string to lowercase." << endl;
-    cout << "Example Usage:" << endl;
-    cout << "  ./program up \"Hello World\"" << endl;
-    cout << "  ./program down \"HELLO WORLD\"" << endl;
+// Function to process the user's action: uppercase or lowercase
+void processConversion(const string &action, const string &input) {
+    if (action == "up") {
+        cout << "Converting to UPPERCASE..." << endl;
+        cout << "Result: " << CaseConverter::toUpperCase(input) << endl;
+    } else if (action == "down") {
+        cout << "Converting to lowercase..." << endl;
+        cout << "Result: " << CaseConverter::toLowerCase(input) << endl;
+    } else {
+        cerr << "Error: Invalid action '" << action << "' provided." << endl;
+        cerr << "Please choose 'up' for uppercase or 'down' for lowercase." << endl;
+    }
 }
 
 int main(int argc, char *argv[]) {
-    // If the user requests help
-    if (argc == 2 && string(argv[1]) == "--help") {
-        displayHelp();
-        return 0;
+    cout << "argc: " << argc << endl;
+    for (int i = 0; i < argc; ++i) {
+        cout << "argv[" << i << "]: " << argv[i] << endl;
     }
 
-    // Validate that the required arguments are provided
-    if (argc < 3) {
-        cerr << "Error: Missing arguments." << endl;
-        displayUsage(argv[0]);
+    // Validate the number of arguments
+    if (!validateArguments(argc, argv)) {
         return 1;
     }
 
-    // Extract the action (up or down) from the first argument
-    string action = argv[1];
-    
-    // Join the remaining arguments into a single string to be converted
-    string inputString = joinArguments(argc, argv, 2);
+    // Store the action ('up' or 'down') and combine the input string
+    string action(argv[1]);
+    string input = combineArguments(argc, argv);
 
-    // Perform the conversion based on the action
-    if (action == "up") {
-        cout << "Original String: " << inputString << endl;
-        cout << "Converted to UPPERCASE: " << CaseConverter::toUpperCase(inputString) << endl;
-    } else if (action == "down") {
-        cout << "Original String: " << inputString << endl;
-        cout << "Converted to lowercase: " << CaseConverter::toLowerCase(inputString) << endl;
-    } else {
-        // Handle unknown actions
-        cerr << "Error: Unknown action '" << action << "'." << endl;
-        displayUsage(argv[0]);
-        return 1;
-    }
+    // Process the conversion based on the action
+    processConversion(action, input);
 
     return 0;
 }
